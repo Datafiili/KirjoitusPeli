@@ -1,0 +1,24 @@
+<html>
+	
+	<head>
+		<link rel="stylesheet" href="style.css">
+	</head>
+	
+	<body>
+		<center>
+			<div id="PlayArea">
+				<button id="startButton" onclick="StartTimer();">Start</button>
+				<div id="typegame" hidden>
+					<h1>Kirjoitus peli</h1>
+					<p id="kirjoitettava"></p>
+					<input id="kirjoitus" oninput="Tarkista()"></input>
+					<p id="points"></p>
+				</div>
+				
+				<p id="timer"></p>
+				<p id="score"></p>
+			</div>
+		</center>
+	</body>
+	<script src="KirjoitusPeli.js"></script>
+</html>
