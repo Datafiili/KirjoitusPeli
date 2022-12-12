@@ -6,11 +6,11 @@ var elaimet = [
 "lintu", "talitiainen", "korppi", "harakka", "kotka", "tikka",
 "punatulkku", "kala", "ahven", "lohi", "silakka", "hai", "valas",
 "delfiini",				
-]
+];
 var paikat = [
 "talo", "koti", "maja", "m&ouml;kki", "kaupunki", "kyl&auml;",
 "maapallo", "maa", "meri", "j&auml;rvi", "lampi", "kota",
-]
+];
 var verbit = [
 "olla", "juosta", "k&auml;vell&auml;", "hyp&auml;t&auml;", "tuoda", "vied&auml;",
 "pest&auml;", "piest&auml;", "uida", "taistella", "tapella", "kinastella", "yritt&auml;&auml;",
@@ -18,14 +18,27 @@ var verbit = [
 "uhrata", "luovuttaa", "edisty&auml;", "erist&auml;&auml;", "erikoistua", "ehdottaa", "esitt&auml;&auml;",
 "iloita", "inhota", "istua", "ostaa", "odottaa", "olettaa", "ohjata", "aloittaa", "astua", "altistaa",
 "ajaa", "ratsastaa", "auttaa", "ankkuroida", "antautua", "antaa" 
-]
+];
 var adjektiivit = [
 "punainen", "sininen", "vihre&auml;", "keltainen", "musta", "valkoinen", "harmaa", "pinkki", "purppura",
 "violetti", "oranssi", "valoisa", "pime&auml;", "nopea", "hidas", "matala", "korkea", "pieni", "iso",
 "suuri", "lyhyt", "eloisa", "energinen", "eloton", "uusi", "vanha", "k&auml;ytetty",
-]
+];
+var numeraalit = [
+"yksi", "kaksi", "kolme", "nelj&auml;", "viisi", "kuusi", "seitsem&auml;n", "kahdeksan", "yhdeks&auml;n",
+"kymmenen", "yksitoista", "kaksitoista", "kolmetoista", "nelj&auml;toista", "viisitoista",
+"kuusitoista", "seitsem&auml;ntoista", "kahdeksantoista", "yhdeks&auml;ntoista", "kaksikymment&auml;",
+"kolmekymment&auml;", "nelj&auml;kymment&auml;", "viisikymment&auml;", "kuusikymment&auml;",
+"seitsem&auml;nkymment&auml;", "kahdeksankymment&auml;", "yhdeks&auml;nkymment&auml;", "sata",
+"kaksisataa", "kolmesataa", "nelj&auml;sataa", "viisisataa", "kuusisataa", "seitsem&auml;nsataa",
+"kahdeksansataa", "yhdeks&auml;nsataa", "tuhat",
+];
+var pronominit = [
+"min&auml;", "sin&auml;", "h&auml;n", "me", "te", "he", "t&auml;m&auml;", "tuo", "se",
+"n&auml;m&auml;", "nuo", "ne", "joka", "kuka", "kumpainen", "kuka" ,"ketä", "jompainen", "ken",
+];
 
-var sanat = elaimet.concat(paikat).concat(verbit).concat(adjektiivit);
+var sanat = elaimet.concat(paikat).concat(verbit).concat(adjektiivit).concat(numeraalit).concat(pronominit);
 console.log(sanat);
 //Lisätään jokaiseen sanaa loppuun välilyönti,
 //jotta sanan kirjoitettu tulee painaa välilyöntiä.
@@ -60,7 +73,7 @@ function HidePage(){
 function CalculateTime(){
 	timer.innerHTML = "Time: " + aika;
 	aika--;
-	if(aika > 0){
+	if(aika >= 0){
 		setTimeout(CalculateTime, 1000);
 	}
 	else{ //Aika loppui
@@ -83,6 +96,12 @@ function StartTimer(){
 	
 	aika = 60;
 	UnhidePage();
+	UusiSana();
+	pisteet = 0;
+	pisteHolder = 0;
+	KirjoitaPisteet();
+	kirjoitettava.style.color = "white";
+	kirjoitus.value = "";
 	kirjoitus.focus();
 	kirjoitus.select();
 	CalculateTime();
